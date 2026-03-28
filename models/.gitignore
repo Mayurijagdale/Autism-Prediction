@@ -1,0 +1,7 @@
+# Ignore large/binary model files by default
+*.onnx
+*.pt
+*.pth
+*.h5
+*.keras
+saved_model/
