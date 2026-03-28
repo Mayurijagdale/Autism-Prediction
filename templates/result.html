@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Result</h2>
+<div class="result-card">
+	<div class="score">
+		<div class="gauge" data-percentage="{{ percentage }}">
+			<svg viewBox="0 0 120 120" class="gauge-svg" width="160" height="160">
+				<circle class="gauge-bg" cx="60" cy="60" r="54"></circle>
+				<circle class="gauge-progress" cx="60" cy="60" r="54"></circle>
+			</svg>
+			<div class="gauge-center"><span class="gauge-number">{{ percentage }}%</span></div>
+		</div>
+	</div>
+	<div class="breakdown">
+		<h3>Autism Breakdown</h3>
+		<ul>
+			<li>Communication: {{ totals_by_category.get('communication', 0) }}</li>
+			<li>Behaviour: {{ totals_by_category.get('behaviour', 0) }}</li>
+			<li>Social: {{ totals_by_category.get('social', 0) }}</li>
+		</ul>
+	</div>
+</div>
+
+{% if evidence_files %}
+<section>
+	<h3>Images Submitted</h3>
+	<div class="gallery">
+		{% for f in evidence_files %}
+			<figure>
+				<img src="{{ url_for('uploads', filename=f) }}" alt="submitted image">
+				<figcaption>{{ f }}</figcaption>
+			</figure>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}
+
+<section class="disclaimer">
+	<h3>Important</h3>
+	<p>This is a simplified educational tool and does not diagnose autism. For concerns or a clinical assessment, please consult qualified healthcare professionals.</p>
+</section>
+
+<a class="btn" href="{{ url_for('assessment') }}">Retake Assessment</a>
+<a class="btn" href="{{ url_for('index') }}">Home</a>
+<script src="{{ url_for('static', filename='result-ui.js') }}"></script>
+{% endblock %} 

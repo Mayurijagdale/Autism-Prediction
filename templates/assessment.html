@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block body_class %}page-assessment{% endblock %}
+{% block content %}
+<h2>Assessment</h2>
+<div class="progress"><div id="progressBar" class="progress-bar" style="width: 0%"></div></div>
+<form id="assessmentForm" action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data" class="assessment-form">
+	<section class="section">
+		<h3>Communication</h3>
+		<p>Rate each statement from 0 (Never) to 3 (Often).</p>
+		<div class="grid">
+			<label>1. Understands simple instructions
+				<div class="range"><input type="range" min="0" max="3" step="1" value="3" name="communication_1"><span class="badge">3</span></div>
+			</label>
+			<label>2. Uses words or gestures to express needs
+				<div class="range"><input type="range" min="0" max="3" step="1" value="2" name="communication_2"><span class="badge">2</span></div>
+			</label>
+			<label>3. Maintains eye contact
+				<div class="range"><input type="range" min="0" max="3" step="1" value="3" name="communication_3"><span class="badge">3</span></div>
+			</label>
+			<label>4. Responds to name
+				<div class="range"><input type="range" min="0" max="3" step="1" value="1" name="communication_4"><span class="badge">1</span></div>
+			</label>
+			<label>5. Shares interests (e.g., shows objects)
+				<div class="range"><input type="range" min="0" max="3" step="1" value="2" name="communication_5"><span class="badge">2</span></div>
+			</label>
+		</div>
+	</section>
+
+	<section class="section">
+		<h3>Behaviour</h3>
+		<p>Rate each statement from 0 (Never) to 3 (Often).</p>
+		<div class="grid">
+			<label>1. Repeats movements or sounds
+				<div class="range"><input type="range" min="0" max="3" step="1" value="3" name="behaviour_1"><span class="badge">3</span></div>
+			</label>
+			<label>2. Strong reactions to sensory input
+				<div class="range"><input type="range" min="0" max="3" step="1" value="2" name="behaviour_2"><span class="badge">2</span></div>
+			</label>
+			<label>3. Prefers routines; upset by change
+				<div class="range"><input type="range" min="0" max="3" step="1" value="3" name="behaviour_3"><span class="badge">3</span></div>
+			</label>
+			<label>4. Focuses intensely on specific topics
+				<div class="range"><input type="range" min="0" max="3" step="1" value="1" name="behaviour_4"><span class="badge">1</span></div>
+			</label>
+			<label>5. Seeks time alone frequently
+				<div class="range"><input type="range" min="0" max="3" step="1" value="2" name="behaviour_5"><span class="badge">2</span></div>
+			</label>
+		</div>
+	</section>
+
+	<section class="section">
+		<h3>Social Interaction</h3>
+		<p>Rate each statement from 0 (Never) to 3 (Often).</p>
+		<div class="grid">
+			<label>1. Initiates play or conversation
+				<div class="range"><input type="range" min="0" max="3" step="1" value="3" name="social_1"><span class="badge">3</span></div>
+			</label>
+			<label>2. Understands others' feelings
+				<div class="range"><input type="range" min="0" max="3" step="1" value="2" name="social_2"><span class="badge">2</span></div>
+			</label>
+			<label>3. Shares enjoyment with others
+				<div class="range"><input type="range" min="0" max="3" step="1" value="3" name="social_3"><span class="badge">3</span></div>
+			</label>
+			<label>4. Takes turns in activities
+				<div class="range"><input type="range" min="0" max="3" step="1" value="1" name="social_4"><span class="badge">1</span></div>
+			</label>
+			<label>5. Adapts to group settings
+				<div class="range"><input type="range" min="0" max="3" step="1" value="2" name="social_5"><span class="badge">2</span></div>
+			</label>
+		</div>
+	</section>
+
+	<section class="section" id="camera">
+		<h3>Photo Upload</h3>
+		<p>Optional: upload a recent photo (png, jpg, jpeg, webp).</p>
+		<input type="file" name="photo" accept="image/*">
+	</section>
+
+	<section class="section">
+		<h3>Live Camera (OpenCV)</h3>
+		<p>Server-side video stream via OpenCV. Click capture to save a snapshot.</p>
+		<div class="camera">
+			<img id="opencvStream" src="{{ url_for('video_feed') }}" alt="Live stream" style="max-width: 100%; border-radius: 8px; border: 1px solid #e5e7eb;"/>
+			<div class="camera-actions">
+				<button type="button" class="btn" id="captureOcvBtn">Capture Snapshot (OpenCV)</button>
+			</div>
+		</div>
+		<input type="hidden" name="camera_image_filename" id="cameraFilename">
+		<p class="hint">If streaming fails, ensure the server has access to a webcam. On Windows, only one app can use the camera at a time.</p>
+	</section>
+
+	<div class="actions sticky">
+		<button class="btn primary" type="submit">Submit</button>
+	</div>
+</form>
+
+<script src="{{ url_for('static', filename='opencv.js') }}"></script>
+<script src="{{ url_for('static', filename='assessment-ui.js') }}"></script>
+{% endblock %} 

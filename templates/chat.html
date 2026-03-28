@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Chatbot</h2>
+<div class="chat">
+	<div id="chatWindow" class="chat-window">
+		{% for m in chat_history %}
+			<div class="message {{ m.role }}">{{ m.content }}</div>
+		{% endfor %}
+	</div>
+	<form id="chatForm" class="chat-input" action="{{ url_for('chat_message') }}" method="post" onsubmit="return false;">
+		<input id="chatMessage" type="text" name="message" placeholder="Type your question..." autocomplete="off" />
+		<button id="chatSendBtn" class="btn primary" type="submit">Send</button>
+	</form>
+</div>
+<script src="{{ url_for('static', filename='chat.js') }}"></script>
+{% endblock %} 

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Autism Assessment (Demo)</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+	<header class="site-header">
+		<div class="container">
+			<h1 class="brand"><a href="{{ url_for('index') }}">Autism Assessment</a></h1>
+			<nav class="nav">
+				<a href="{{ url_for('index') }}">Home</a>
+				<a href="{{ url_for('assessment') }}">Assessment</a>
+				<a href="{{ url_for('chat') }}">Chatbot</a>
+				<button id="themeToggle" class="btn" type="button" title="Toggle theme">🌓</button>
+			</nav>
+		</div>
+	</header>
+	<main class="container">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				<ul class="flash-list">
+					{% for category, message in messages %}
+						<li class="flash {{ category }}">{{ message }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+		{% block content %}{% endblock %}
+	</main>
+	<footer class="site-footer">
+		<div class="container">
+			<p>For educational use only. Not a medical device or diagnosis.</p>
+		</div>
+	</footer>
+	<div id="toastContainer" class="toast-container"></div>
+	<script src="{{ url_for('static', filename='toast.js') }}"></script>
+	<script src="{{ url_for('static', filename='ui.js') }}"></script>
+</body>
+</html> 

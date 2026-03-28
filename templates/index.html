@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body_class %}page-home{% endblock %}
+{% block content %}
+<section class="hero">
+	<h2>Welcome</h2>
+	<p>Complete a brief, non-diagnostic assessment across communication, behaviour, and social interaction. Optionally add an image or capture a snapshot. Results show a percentage score.</p>
+	<div class="cards">
+		<a class="card" href="{{ url_for('assessment') }}">
+			<h3>Start Assessment</h3>
+			<p>Takes about 2–3 minutes</p>
+		</a>
+		<a class="card" href="{{ url_for('chat') }}">
+			<h3>Ask the Chatbot</h3>
+			<p>Get quick info about symptoms, treatment, and diagnosis</p>
+		</a>
+	</div>
+</section>
+
+{% endblock %} 
