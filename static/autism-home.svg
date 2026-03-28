@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+	<defs>
+		<linearGradient id="p1" x1="0" x2="1" y1="0" y2="1">
+			<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+			<stop offset="100%" stop-color="#a78bfa" stop-opacity="0.25"/>
+		</linearGradient>
+		<pattern id="puzzle" width="80" height="80" patternUnits="userSpaceOnUse">
+			<path d="M0 40h20a10 10 0 0 0 20 0h20v20a10 10 0 0 0 0 20v20H40a10 10 0 0 0-20 0H0V80a10 10 0 0 0 0-20z" fill="#60a5fa" opacity=".25"/>
+		</pattern>
+	</defs>
+	<rect fill="url(#p1)" x="0" y="0" width="1600" height="900"/>
+	<rect fill="url(#puzzle)" x="0" y="0" width="1600" height="900"/>
+	<circle cx="1400" cy="140" r="220" fill="#22d3ee" opacity=".12"/>
+	<circle cx="180" cy="760" r="180" fill="#f472b6" opacity=".12"/>
+</svg> 
